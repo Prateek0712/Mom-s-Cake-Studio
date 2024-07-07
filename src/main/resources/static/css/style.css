@@ -1,0 +1,64 @@
+.container-1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sub-section{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid gainsboro;
+    box-sizing:content-box;
+    padding: 100px;
+    padding-top: 25px;
+    margin-top: 40px;
+}
+#successMsg{
+    text-align: center;
+}
+.inner-container-2{
+    display: flex;
+    width: 100%;
+    /*border: 1px solid red; */
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#orderId{
+    font-weight: bold;
+}
+.inner-container-4{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.inner-container-4 p{
+    font-weight: bold;
+    font-size: 20px
+}
+#billingAddress ul,#shippingAddress ul
+{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+table,thead{
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+thead tr{
+    background-color: black;
+    color:white;
+}
+tr{
+    height: 35px;
+    border-bottom: 1px solid black;
+}
+th,td{
+    padding-left: 10px;
+}

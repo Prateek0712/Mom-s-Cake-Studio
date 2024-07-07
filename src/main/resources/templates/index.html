@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Cake Shop</title>
+    <!--<link href="./style.css" rel="stylesheet">-->
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    </style>      
+    <style>
+        body{
+    background-color: black;
+    font-family:'Poppins', Courier, monospace;
+}
+.container-header{
+    box-sizing: border-box;
+    padding-left: 50px;
+    padding-right: 50px;
+    color:white;
+}
+
+/*----------------------------------HEADER-----------------------------------------*/
+.header-wrapper{
+    position:fixed;
+    top: 0; /* Ensure the header stays at the top of the viewport */
+    left: 0;
+    width: 100%; /* Ensure the header spans the entire width */
+    z-index: 1000; /* Ensure the header stays on top of other content */
+    background-color: black;
+}
+.header{
+    display: flex;
+    color:white;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.name{
+    align-items: center;
+}
+.name p{
+    font-size: 25px;
+}
+.head-menu{
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+.head-menu li{
+    list-style: none;
+}
+.head-icons{
+    font-size: 25px;
+}
+.head-icons a{
+    margin-right: 10px;
+}
+
+/* ----------------------------------------main-content--------------------------------------*/
+
+.main-content{
+   /* margin-top: 93px;*/
+    width: 100%;
+    height: 700px;
+    padding: 100px;
+    background-image: url(../static/images/cake-1.jpg);
+    background-image: th:url("@{/images/cake-1.jpg}");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-sizing: border-box;
+    position: relative;
+}
+.main-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent black background */
+    mix-blend-mode: multiply; /* Darken the background */
+}
+.inside-content{
+    position: relative;
+    z-index: 1;
+    display: flex;
+    color:white;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.main-text{
+    position: relative;
+    letter-spacing: 5px;
+    font-size: 50px;
+}
+.line{
+    position: relative;
+    width: 500px;
+    height: 10px;
+    background-color: #F24C4C;
+}
+.main-para{
+    position: relative;
+    font-size: 20px;
+}
+
+/* ------------------------------------------About us------------------------------------------------*/
+.about-us{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+.about-us #about-us-heading{
+    font-size: 50px;
+    border-bottom: 5px solid #F24C4C;
+}
+.about-us-content{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.about-us-content .text{
+    flex:4;
+    /*border: 1px solid gainsboro;*/
+}
+.text p{
+    width: 80%;
+}
+.about-us-content .image{
+    flex:3;
+    position: relative;
+    display: inline-block; 
+}
+.image img{
+    width: 100%;
+}
+
+/* --------------------------------------------------Menu-------------------------------------*/
+.menu-matrix{
+    width: 90%;
+    height: 65vh;
+    display:grid;
+    grid-template-areas: "a1 a2"
+                         "a3 a4"
+                         "a5 a6";
+    grid-gap: 10px;
+}
+.m1{
+    grid-area: a1;
+}
+.m2{
+    grid-area: a2;
+}
+.m3{
+    grid-area: a3;
+}
+.m4{
+    grid-area: a4;
+}
+.m5{
+    grid-area: a5;   
+}
+.m6{
+    grid-area: a6;
+}
+.menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 80px;
+    padding-right: 80px;
+    flex-wrap: wrap;
+}
+.menu-heading{
+    font-size: 50px;
+    border-bottom: 5px solid #F24C4C;
+}
+.menu-grid{
+    padding: 20px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.row-1{
+    display: flex;
+    /*flex-wrap: wrap;*/
+    flex-direction: row;
+    align-items: center;
+    gap:5px;
+}
+.menu-list{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+.menu-list-img{
+    flex:1;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.menu-list-img img{
+    width: 100%;
+}
+.menu-description{
+    flex:2;
+}
+.menu-item{
+    color: #F2C94C;
+    font-size: 25px;
+    margin:0;
+}
+.item-detail{
+    margin: 0;
+}
+
+/*-----------------------------------------GALLLERY-----------------------------------------------*/
+.gallery{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 80px;
+    padding-right: 80px;
+    flex-wrap: wrap;
+}
+.gallery-heading{
+    font-size: 50px;
+    border-bottom: 5px solid #F24C4C;
+}
+.gallery-item{
+    width: 100%;
+    height: 70vh;
+    display:grid;
+    grid-template-areas: "a a a a a a a b b b c c c"
+                         "a a a a a a a b b b c c c"
+                         "a a a a a a a d d d c c c"
+                         "a a a a a a a d d d e e e"
+                         "a a a a a a a f f f e e e"
+                         "a a a a a a a f f f e e e";
+    grid-gap: 10px;
+}
+.gallery-item div{
+    border-radius: 10px;
+}
+.g1{
+    background-image: url(../static/images/cake-1.jpg);
+    background-image: th:url("@{/images/cake-1.jpg}");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-area: a;
+}
+.g2{
+    background-image: url(../static/images/cake-2.jpg);
+    background-image: th:url("@{/images/cake-2.jpg}");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-area: b;
+}
+.g3{
+    background-image: url(../static/images/cake-3.jpg);
+    background-image: th:url("@{/images/cake-3.jpg}");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-area: c;
+}
+.g4{
+    background-image: url(../static/images/cake-4.jpg);
+    background-image: th:url("@{/images/cake-4.jpg}");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-area: d;
+}
+.g5{
+    background-image: url(../static/images/cake-5.jpg);
+    background-image: th:url("@{/images/cake-5.jpg}");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-area: e;
+}
+.g6{
+    background-image: url(../static/images/cake-6.jpg);
+    background-image: th:url("@{/images/cake-6.jpg}");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-area: f;
+}
+.find-us{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 80px;
+    padding-right: 80px;
+    flex-wrap: wrap;
+}
+.find-us-heading{
+    font-size: 50px;
+    border-bottom: 5px solid #F24C4C;
+}
+.find-us-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:25px
+}
+.find-us-info{
+    flex:4;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+}
+.find-us-info p{
+    font-size: 20px;
+}
+.find-us-info p i{
+    font-size: 30px;
+    margin-right: 20px;
+}
+iframe{
+    flex:3;
+    height: 320px;
+}
+.footer{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding-left: 80px;
+    padding-right: 150px;
+    flex-wrap: wrap;
+}
+.footer-icon{
+    font-size: 80px;
+}
+.footer-details p{
+    font-size: 20px;
+}
+.footer-details i{
+    font-size: 25px;
+    margin-right: 10px;
+}
+.copyright{
+    margin: 0;
+    background-color: rgba(105, 103, 103, 0.3);
+    font-size: 15px;
+    text-align: center;
+    color:white;
+}
+    </style>
+</head>
+<body>
+    <!-------------------------------------------HEADER---------------------------------------------------->
+  <nav class="navbar navbar-expand-lg navbar-light " style="position: sticky; top: 0; z-index: 1000; background-color: black;" >
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img th:src="@{/images/logo.png}"  src="../static/images/logo.png" width="auto" height="40" class="d-inline-block align-top" alt=""/>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav ">
+                <li class="nav-item active">
+                    <a class="nav-link text-white" th:href="@{/}" href="#">home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link text-white" th:href="@{/shop}" href="#">shop</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link text-white" sec:authorize="isAnonymous()" th:href="@{/login}" href="#">login</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link text-white" sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#">logout</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link text-white" th:href="@{/cart}" href="#">cart</a>
+                </li>
+                <li class="nav-item active">
+                    <span class="nav-link text-white" th:text="${cartCount}">0</span>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+  <!--------------------------------------------Main content----------------------------------------------->
+  <div class="main-content" th:style="'background-image: url(' + @{/images/cake-1.jpg} + ');'">
+    <div class="inside-content">
+        <p class="main-text"><strong>Craving for a <br>Delicious cake?</strong></p>
+        <p class="line"></p>
+        <p class="main-para">
+            Celebrate any occasion with a slice of perfection<br>
+             browse our online collection of artisanal cakes.<br> 
+             Handcrafted with love, devoured with joy!
+        </p>
+    </div>
+  </div>
+  <!--------------------------------------------about us----------------------------------------------->
+    <!--------------------------------------------Menu----------------------------------------------->
+    <div class="menu mt-4">
+        <p class="menu-heading mt-4">MENU</p>
+        <p class="menu-text ">Welcome to Mom's cake studio, where every bite is a celebration 
+            of love and passion! Our artisanal cakes are crafted with precision and care, 
+            using only the finest ingredients to create masterpieces that delight the senses. 
+            From classic vanilla and decadent chocolate to innovative flavors and designs, 
+            our cakes are baked fresh daily to bring joy to your special moments. Whether 
+            you're marking a milestone birthday, anniversary, or simply satisfying your sweet 
+            tooth, our cakes are the perfect treat to make your occasion unforgettable. 
+            Indulge in a slice (or two!) and experience the magic of Mom's cake studio.</p>
+        <div class="menu-matrix">
+            <div class="menu-list m1">
+                <div class="menu-list-img">
+                    <img alt="pizza" th:src="@{/images/cake-2.jpg}"  src="../static/images/cake-2.jpg">
+                </div>
+                <div class="menu-description">
+                    <p class="menu-item">Birthday Cakes</p>
+                    <p class="item-detail"> Celebrate life's sweetest moments with <br>our delicious birthday cakes!</p>
+                </div>
+            </div>
+            <div class="menu-list m2">
+                <div class="menu-list-img">
+                    <img alt="pizza" th:src="@{/images/cake-3.jpg}"  src="../static/images/cake-3.jpg">
+                </div>
+                <div class="menu-description">
+                    <p class="menu-item">Customize Cakes</p>
+                    <p class="item-detail">Design your dream cake - custom creations made easy!</p>
+                </div>
+            </div>
+            <div class="menu-list m3">
+                <div class="menu-list-img">
+                    <img alt="pizza"  th:src="@{/images/cake-4.jpg}"  src="../static/images/cake-4.jpg">
+                </div>
+                <div class="menu-description">
+                    <p class="menu-item">Wedding cakes</p>
+                    <p class="item-detail">Sweeten your special day with our exquisite wedding cakes, tailored to your love story.</p>
+                </div>
+            </div>
+            <div class="menu-list m4">
+                <div class="menu-list-img">
+                    <img alt="pizza" th:src="@{/images/cake-5.jpg}"  src="../static/images/cake-5.jpg">
+                </div>
+                <div class="menu-description">
+                    <p class="menu-item">Cheese cake</p>
+                    <p class="item-detail">Try our delicious cheese cake prepared just to make you an addict of it</p>
+                </div>
+            </div>
+            <div class="menu-list m5">
+                <div class="menu-list-img">
+                    <img alt="pizza" th:src="@{/images/cake-6.jpg}"  src="../static/images/cake-6.jpg">
+                </div>
+                <div class="menu-description">
+                    <p class="menu-item">Waffles</p>
+                    <p class="item-detail">Savor the Sweetness of Life with Our Artisanal Cakes - Order Online Today!</p>
+                </div>
+            </div>
+            <div class="menu-list m6">
+                <div class="menu-list-img">
+                    <img alt="pizza" th:src="@{/images/cake-7.jpg}"  src="../static/images/cake-7.jpg">
+                </div>
+                <div class="menu-description">
+                    <p class="menu-item">Chocolates</p>
+                    <p class="item-detail">Try out our special chocolate, selected just for you! </p>
+                </div>
+            </div>
+        </div>
+        <!--<div class="menu-grid">
+            <div class="row-1">
+                <div class="menu-list">
+                    <div class="menu-list-img">
+                        <img alt="pizza" src="./images/cake-2.jpg">
+                    </div>
+                    <div class="menu-description">
+                        <p class="menu-item">Birthday Cakes</p>
+                        <p class="item-detail"> Celebrate life's sweetest moments with <br>our delicious birthday cakes!</p>
+                    </div>
+                </div>
+                <div class="menu-list">
+                    <div class="menu-list-img">
+                        <img alt="pizza" src="./images/cake-3.jpg">
+                    </div>
+                    <div class="menu-description">
+                        <p class="menu-item">Customize Cakes</p>
+                        <p class="item-detail">Design your dream cake - custom creations made easy!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row-1">
+                <div class="menu-list">
+                    <div class="menu-list-img">
+                        <img alt="pizza" src="./images/cake-4.jpg">
+                    </div>
+                    <div class="menu-description">
+                        <p class="menu-item">Wedding cakes</p>
+                        <p class="item-detail">Sweeten your special day with our exquisite wedding cakes, tailored to your love story.</p>
+                    </div>
+                </div>
+                <div class="menu-list">
+                    <div class="menu-list-img">
+                        <img alt="pizza" src="./images/cake-5.jpg">
+                    </div>
+                    <div class="menu-description">
+                        <p class="menu-item">Cheese cake</p>
+                        <p class="item-detail">Try our delicious cheese cake prepared just to make you an addict of it</p>
+                    </div>
+                </div>
+            </div>   
+            <div class="row-1">
+                <div class="menu-list">
+                    <div class="menu-list-img">
+                        <img alt="pizza" src="./images/cake-6.jpg">
+                    </div>
+                    <div class="menu-description">
+                        <p class="menu-item">Waffles</p>
+                        <p class="item-detail">Savor the Sweetness of Life with Our Artisanal Cakes - Order Online Today!</p>
+                    </div>
+                </div>
+                <div class="menu-list">
+                    <div class="menu-list-img">
+                        <img alt="pizza" src="./images/cake-7.jpg">
+                    </div>
+                    <div class="menu-description">
+                        <p class="menu-item">Chocolates</p>
+                        <p class="item-detail">Try out our special chocolate, selected just for you! </p>
+                    </div>
+                </div>
+            </div>      
+        </div>-->
+    </div>
+    <!--------------------------------------------gallery----------------------------------------------->
+    <div class="gallery">
+        <p class="gallery-heading mt-4">GALLERY</p>
+        <div class="gallery-item mt-4">
+            <div class="g1" th:style="'background-image: url(' + @{/images/cake-1.jpg} + ');'"></div>
+            <div class="g2" th:style="'background-image: url(' + @{/images/cake-2.jpg} + ');'"></div>
+            <div class="g3" th:style="'background-image: url(' + @{/images/cake-3.jpg} + ');'"></div>
+            <div class="g4" th:style="'background-image: url(' + @{/images/cake-4.jpg} + ');'"></div>
+            <div class="g5" th:style="'background-image: url(' + @{/images/cake-5.jpg} + ');'"></div>
+            <div class="g6" th:style="'background-image: url(' + @{/images/cake-6.jpg} + ');'"></div>
+        </div>
+    </div>
+    <!--------------------------------------------find us----------------------------------------------->
+    <div class="find-us">
+        <p class="find-us-heading mt-4">FIND US</p>
+        <div class="find-us-content mt-4">
+            <div class="find-us-info">
+                <p>Thank you for visiting Mom's cake studio! We're thrilled to share our passion
+                    for baking with you. Find us online and indulge in our delicious treats 
+                    from the comfort of your own home. We're grateful for 
+                    your support and can't wait to sweeten your day!
+                </p>
+                <p><i class="fa-solid fa-location-dot" style="color: #ffffff;"></i>Pune,Maharashtra</p>
+                <p><i class="fa-solid fa-phone" style="color: #ffffff;"></i> +91-8308009408</p>
+            </div>
+            <iframe
+            width="100%"
+            height="100%"
+            frameborder="0" style="border:0"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3785.6914717645155!2d73.887417!3d18.566247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b93e8f6f6f6b%3A0x437c4b3fadb3f6a!2sPhoenix%20Marketcity%2C%20Viman%20Nagar%2C%20Pune%2C%20Maharashtra%2C%20India!5e0!3m2!1sen!2sin!4v1644135478957!5m2!1sen!2sin"
+            allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+    <!-------------------------------------------Footer----------------------------------------------->
+    <div class="footer">
+        <div class="footer-icon"><i class="fa-solid fa-hotel" style="color: #ffffff;"></i></div>
+        <div class="footer-details">
+            <p><i class="fa-solid fa-envelope" style="color: #ffffff;"></i> Prateek7120@gmail.com</p>
+            <p><i class="fa-solid fa-phone" style="color: #ffffff;"></i> +91-8308009408</p>
+        </div>
+    </div>
+    <p class="copyright"> Made With <i class="fa-solid fa-heart" style="color: #e60505;"></i> By Pratik</p>
+</body>
+</html>
